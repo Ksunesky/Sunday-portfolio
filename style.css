@@ -1,0 +1,432 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f5f7fa;
+    color: #222;
+}
+
+header {
+    background-color: #101820;
+    padding: 20px 8%;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-size: 28px;
+}
+
+.logo span {
+    color: #007bff;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white !important;
+    font-size: 15px;
+}
+
+nav ul li a:hover {
+    color: #007bff !important;
+}
+
+.hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    padding: 60px 10%;
+}
+
+.hero-text {
+    max-width: 700px;
+}
+
+.hero-text h4 {
+    color: #007bff;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.hero-text h1 {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.hero-text h1 span {
+    color: #007bff;
+}
+
+.hero-text h2 {
+    margin-bottom: 20px;
+    color: #444;
+}
+
+.hero-text p {
+    font-size: 17px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 14px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    background-color: #101820;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .hero-text h1 {
+        font-size: 32px;
+    }
+}
+
+/* ACADEMIC PLANNER */
+
+.planner-section {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 30px;
+    text-align: center;
+}
+
+.planner-section h1 {
+    margin-bottom: 15px;
+}
+
+.task-input {
+    display: flex;
+    gap: 10px;
+    margin: 30px 0;
+}
+
+.task-input input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.task-input button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#taskList {
+    list-style: none;
+}
+
+#taskList li {
+    background: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+}
+
+#taskList li.completed span {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.task-buttons button {
+    margin-left: 8px;
+    padding: 7px 10px;
+    cursor: pointer;
+}
+
+/* CONTACT PAGE */
+
+.contact-section {
+    max-width: 650px;
+    margin: 50px auto;
+    padding: 30px;
+}
+
+.contact-section h1,
+.contact-section > p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#contactForm {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#contactForm input,
+#contactForm textarea {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+#contactForm button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#contactForm button:hover {
+    background-color: #0056b3;
+}
+
+#formResponse {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    max-width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #007bff;
+    margin: 20px 0;
+    display: block;
+}
+
+.projects-section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.project-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.project-card {
+    width: 300px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.project-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.project-card a {
+    display: inline-block;
+    margin-top: 15px;
+    color: #007bff;
+}
+
+/* ==========================================
+   Professional Styling for About Page (Left Aligned & Left Positioned)
+   ========================================== */
+
+main.about-section {
+    max-width: 800px;
+    margin: 40px 20px; /* Shifts the entire white card box to the left */
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    text-align: left !important;
+}
+
+main.about-section > h1 {
+    font-size: 2.2rem;
+    color: #1a252f;
+    margin-bottom: 20px;
+    text-align: left !important;
+}
+
+main.about-section > p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #4a5568;
+    margin-bottom: 30px;
+    text-align: left !important;
+}
+
+main.about-section section {
+    background: #f8f9fa;
+    margin-bottom: 35px;
+    padding: 20px 25px;
+    border-radius: 8px;
+    border-left: 4px solid #007bff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: left;
+}
+
+main.about-section section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+}
+
+main.about-section h2 {
+    font-size: 1.25rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+main.about-section p, 
+main.about-section li {
+    line-height: 1.6;
+    color: #4a5568;
+    text-align: left;
+}
+
+main.about-section ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+main.about-section li {
+    margin-bottom: 6px;
+}
+/* About Me Page */
+
+.about-section {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.about-section h1 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 25px;
+}
+
+.about-section h2 {
+    color: #007bff;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.about-section p {
+    line-height: 1.8;
+    color: #333;
+}
+
+.about-section ul {
+    padding-left: 25px;
+    line-height: 2;
+}
+/* Academic Information Table */
+
+.academic-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    background: white;
+}
+
+.academic-table th,
+.academic-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.academic-table th {
+    background: #007bff;
+    color: white;
+}
+
+.academic-table tr:nth-child(even) {
+    background: #f2f2f2;
+}
+/* Mobile Responsive Design */
+@media screen and (max-width: 768px) {
+
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0;
+        gap: 10px;
+    }
+
+    .project-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .project-card {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .about-section {
+        margin: 20px 12px;
+        padding: 20px;
+    }
+
+    .academic-table {
+        font-size: 14px;
+    }
+}
