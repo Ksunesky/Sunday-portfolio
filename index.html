@@ -1,53 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sunday Orjiakor | Portfolio</title>
+    <meta name="description" content="Explore the personal portfolio of Sunday Orjiakor, a Computer Science student passionate about technology, programming and web development.">
+    <meta name="author" content="Sunday Orjiakor">
+    <title>Sunday Orjiakor | Personal Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <header>
-        <nav>
-            <h2 class="logo">Sunday<span>.</span></h2>
+    <!-- NAVIGATION BAR -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand">Sunday<span>.</span></a>
 
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Me</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="planner.html">Academic Planner</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="index.html" class="active" aria-current="page">Home</a>
+                <a href="about.html">About</a>
+                <a href="projects.html">Projects</a>
+                <a href="planner.html">Planner</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+
+            <a href="contact.html" class="btn btn-outline">
+                Contact Me
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
     </header>
 
-    <main>
-        <section class="hero">
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-container">
 
-            <div class="hero-text">
-                <h4>WELCOME TO MY PORTFOLIO</h4>
+            <div class="hero-content">
+                <span class="welcome-tag">
+                    <i class="fas fa-hand-sparkles"></i>
+                    Welcome to my portfolio
+                </span>
 
                 <h1>Hello, I'm <span>Sunday Orjiakor</span></h1>
-<img src="image/sunday.jpeg" alt="Photo of Sunday Orjiakor" class="profile-image">
-                <h2>Computer Science Student</h2>
 
-                <p>
-                    I am a Computer Science student at MIVA Open University
-                    with an interest in technology, programming and web development.
-                    I am passionate about learning new skills and creating
-                    solutions through technology.
+                <h2>Aspiring Software Developer</h2>
+
+                <p class="hero-description">
+                    I am a Computer Science student at MIVA Open
+                    University with a strong passion for technology,
+                    programming and web development.
+                    I enjoy learning new skills, solving problems
+                    and turning creative ideas into practical
+                    digital solutions.
                 </p>
 
-                <a href="projects.html" class="btn">View My Projects</a>
+                <div class="hero-buttons">
+                    <a href="projects.html" class="btn btn-primary">
+                        Explore My Work
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="contact.html" class="btn btn-outline">Contact Me</a>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://github.com/ksunesky" target="_blank" rel="noopener noreferrer" aria-label="Visit my GitHub profile">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
             </div>
 
-        </section>
+            <div class="hero-visual">
+                <div class="avatar-ring">
+                    <img src="image/sunday.jpeg" alt="Portrait of Sunday Orjiakor">
+                </div>
+                <div class="hero-note">Build • Learn • Grow</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT SECTION -->
+    <main class="main-section">
+
+        <div class="section-heading">
+            <span class="section-label">Discover</span>
+            <h2>A Little About <span>Me</span></h2>
+            <p>Get to know more about my academic journey, developing skills and projects.</p>
+        </div>
+
+        <div class="cards-grid">
+
+            <article class="info-card">
+                <div class="card-icon"><i class="fas fa-user-graduate"></i></div>
+                <h3>About Me</h3>
+                <p>
+                    I am a Computer Science student at MIVA Open University.
+                    I have a strong interest in software development,
+                    technology and continuous learning.
+                    My ambition is to develop practical skills and
+                    build useful digital solutions.
+                </p>
+                <a href="about.html" class="card-link">
+                    Learn More <i class="fas fa-arrow-right"></i>
+                </a>
+            </article>
+
+            <article class="info-card">
+                <div class="card-icon"><i class="fas fa-code"></i></div>
+                <h3>My Skills</h3>
+                <p>
+                    I am continuously developing my knowledge of
+                    programming languages and tools used in modern
+                    software development.
+                </p>
+                <div class="skills-grid">
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>JavaScript</span>
+                    <span>Python</span>
+                    <span>Git</span>
+                    <span>GitHub</span>
+                </div>
+                <a href="about.html" class="card-link">
+                    Explore My Skills <i class="fas fa-arrow-right"></i>
+                </a>
+            </article>
+
+            <article class="info-card">
+                <div class="card-icon"><i class="fas fa-laptop-code"></i></div>
+                <h3>My Projects</h3>
+                <div class="project-slide">
+                    <div class="project-icon"><i class="fas fa-globe"></i></div>
+                    <h4>Personal Portfolio Website</h4>
+                    <p>
+                        A responsive personal website designed
+                        to showcase my background, academic
+                        journey, skills and projects.
+                    </p>
+                    <a href="projects.html" class="card-link">
+                        View Projects <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+        </div>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Sunday Orjiakor. All Rights Reserved.</p>
+    <!-- AUDIO INTRODUCTION SECTION -->
+    <section class="main-section multimedia-section">
+
+        <div class="section-heading">
+            <span class="section-label">Get to Know Me</span>
+            <h2>My Personal <span>Introduction</span></h2>
+            <p>Listen to a short introduction about me, my academic journey and my interest in technology.</p>
+        </div>
+
+        <div class="multimedia-content">
+            <div class="card-icon"><i class="fas fa-microphone"></i></div>
+            <h3>Listen to My Introduction</h3>
+            <p>A little introduction from me to you.</p>
+
+            <audio controls preload="metadata">
+                <source src="media/Sunday-audio.mp4" type="audio/mp4">
+                Your browser does not support audio playback.
+            </audio>
+        </div>
+
+    </section>
+
+    <!-- CONTACT BANNER -->
+    <section class="contact-banner">
+
+        <div class="contact-content">
+            <span class="section-label">Get in Touch</span>
+            <h2>Let's Build Something <span>Great Together</span></h2>
+            <p>Have a project, an idea or an opportunity? I would love to hear from you.</p>
+            <a href="contact.html" class="btn btn-primary">
+                Contact Me
+                <i class="fas fa-paper-plane"></i>
+            </a>
+        </div>
+
+        <div class="contact-details">
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                    <h4>Email</h4>
+                    <a href="mailto:s.orjiakor5764@miva.edu.ng">s.orjiakor5764@miva.edu.ng</a>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                    <h4>Location</h4>
+                    <p>Yola, Adamawa State, Nigeria</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <a href="index.html" class="brand">Sunday<span>.</span></a>
+            <p>Building my future, one line of code at a time.</p>
+            <div class="footer-socials">
+                <a href="https://github.com/ksunesky" target="_blank" rel="noopener noreferrer" aria-label="Visit my GitHub profile">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Sunday Orjiakor. All rights reserved.</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>

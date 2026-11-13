@@ -1,46 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An interactive academic planner for organising study activities and academic tasks.">
     <title>Academic Planner | Sunday Orjiakor</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <header>
-        <nav>
-            <h2 class="logo">Sunday<span>.</span></h2>
+    <!-- NAVIGATION BAR -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand">Sunday<span>.</span></a>
 
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Me</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="planner.html">Academic Planner</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="projects.html">Projects</a>
+                <a href="planner.html" class="active" aria-current="page">Planner</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+
+            <a href="contact.html" class="btn btn-outline">
+                Contact Me
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
     </header>
 
-    <main class="planner-section">
+    <!-- PLANNER HERO SECTION -->
+    <section class="hero">
+        <div class="hero-container">
 
-        <h1>My Academic Planner</h1>
+            <div class="hero-content">
+                <span class="welcome-tag">
+                    <i class="fas fa-calendar-check"></i>
+                    Stay Organised
+                </span>
 
-        <p>Organize your academic activities and stay productive.</p>
+                <h1>Academic <span>Planner</span></h1>
 
-        <div class="task-input">
-            <input type="text" id="taskInput" placeholder="Enter your academic task">
+                <h2>Plan Better. Study Smarter.</h2>
 
-            <button onclick="addTask()">Add Task</button>
+                <p class="hero-description">
+                    Welcome to your academic planner. Use this
+                    tool to organise your study activities,
+                    keep track of important academic tasks
+                    and monitor your progress.
+                    Stay focused and make every study session count.
+                </p>
+            </div>
+
+            <div class="hero-visual">
+                <div class="avatar-ring frame-rect">
+                    <img src="image/Planner.png" alt="Academic planner illustration">
+                </div>
+                <div class="hero-note">Plan • Focus • Achieve</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ACADEMIC TASK MANAGER -->
+    <main class="main-section">
+
+        <div class="section-heading">
+            <span class="section-label">Task Management</span>
+            <h2>Manage Your <span>Academic Tasks</span></h2>
+            <p>Add your tasks, track your progress and complete your academic goals.</p>
         </div>
 
-        <ul id="taskList"></ul>
+        <!-- TASK INPUT CARD -->
+        <section class="info-card planner-card">
+            <div class="card-icon"><i class="fas fa-plus-circle"></i></div>
+            <h3>Add a New Task</h3>
+
+            <form id="taskForm">
+                <div class="form-group">
+                    <label for="taskInput">Task Description</label>
+                    <input type="text" id="taskInput" name="task" placeholder="e.g. Study HTML and CSS" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="taskDate">Due Date</label>
+                    <input type="date" id="taskDate" name="dueDate">
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-plus"></i>
+                    Add Task
+                </button>
+            </form>
+        </section>
+
+        <!-- TASK PROGRESS -->
+        <section class="info-card planner-card">
+            <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+            <h3>My Progress</h3>
+
+            <div class="progress-details">
+                <p>Total Tasks: <strong id="totalTasks">0</strong></p>
+                <p>Completed: <strong id="completedTasks">0</strong></p>
+                <p>Remaining: <strong id="remainingTasks">0</strong></p>
+            </div>
+
+            <div class="progress-track">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <p id="progressText">0% completed</p>
+        </section>
+
+        <!-- TASK LIST -->
+        <section class="info-card planner-card">
+            <div class="card-icon"><i class="fas fa-list-check"></i></div>
+            <h3>My Academic Tasks</h3>
+
+            <p>
+                Tick the checkbox when you complete a task.
+                You can also delete tasks you no longer need.
+            </p>
+
+            <ul id="taskList" class="task-list">
+                <!-- JavaScript will display tasks here. -->
+            </ul>
+
+            <p id="emptyMessage">
+                You have no tasks yet. Add your first academic task above.
+            </p>
+        </section>
 
     </main>
 
-    <footer>
-        <p>&copy; 2026 Sunday Orjiakor. All Rights Reserved.</p>
+    <!-- STUDY MOTIVATION SECTION -->
+    <section class="contact-banner">
+        <div class="contact-content">
+            <span class="section-label">Stay Motivated</span>
+            <h2>Small Steps Lead to <span>Big Achievements</span></h2>
+            <p>Stay consistent, manage your time wisely and keep working towards your academic goals.</p>
+            <a href="about.html" class="btn btn-primary">
+                Learn More About Me
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <a href="index.html" class="brand">Sunday<span>.</span></a>
+            <p>Building my future, one line of code at a time.</p>
+            <div class="footer-socials">
+                <a href="https://github.com/ksunesky" target="_blank" rel="noopener noreferrer" aria-label="Visit my GitHub profile">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Sunday Orjiakor. All rights reserved.</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>

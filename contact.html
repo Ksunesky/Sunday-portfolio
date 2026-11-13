@@ -1,58 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Sunday Orjiakor through his personal portfolio website.">
     <title>Contact Me | Sunday Orjiakor</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <header>
-        <nav>
-            <h2 class="logo">Sunday<span>.</span></h2>
+    <!-- NAVIGATION BAR -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand">Sunday<span>.</span></a>
 
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Me</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="planner.html">Academic Planner</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="projects.html">Projects</a>
+                <a href="planner.html">Planner</a>
+                <a href="contact.html" class="active" aria-current="page">Contact</a>
+            </nav>
+
+            <a href="contact.html" class="btn btn-outline">
+                Contact Me
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
     </header>
 
-    <main class="contact-section">
+    <!-- CONTACT HERO SECTION -->
+    <section class="hero">
+        <div class="hero-container">
 
-        <h1>Contact Me</h1>
+            <div class="hero-content">
+                <span class="welcome-tag">
+                    <i class="fas fa-envelope"></i>
+                    Get In Touch
+                </span>
 
-        <p>Feel free to contact me using the form below.</p>
+                <h1>Let's <span>Connect</span></h1>
 
-        <form id="contactForm">
+                <h2>I'd Love to Hear From You</h2>
 
-            <label for="name">Full Name</label>
-            <input type="text" id="name" placeholder="Enter your name">
+                <p class="hero-description">
+                    Thank you for visiting my portfolio.
+                    If you have a question, a suggestion,
+                    or would like to discuss technology,
+                    programming or a possible collaboration,
+                    feel free to contact me using the form below.
+                </p>
+            </div>
 
-            <label for="email">Email Address</label>
-            <input type="text" id="email" placeholder="Enter your email">
+            <div class="hero-visual">
+                <div class="avatar-ring frame-rect">
+                    <img src="image/Contact.png" alt="Envelope with a paper plane illustration">
+                </div>
+                <div class="hero-note">Let's Start a Conversation</div>
+            </div>
 
-            <label for="phone">Phone Number</label>
-            <input type="text" id="phone" placeholder="Enter your phone number">
+        </div>
+    </section>
 
-            <label for="message">Message</label>
-            <textarea id="message" rows="5" placeholder="Write your message"></textarea>
+    <!-- CONTACT INFORMATION AND FORM -->
+    <main class="main-section">
 
-            <button type="submit">Send Message</button>
+        <div class="section-heading">
+            <span class="section-label">Contact Information</span>
+            <h2>Get In <span>Touch With Me</span></h2>
+            <p>You can reach me through the contact information below or send me a message.</p>
+        </div>
 
-        </form>
+        <div class="contact-layout">
 
-        <p id="formResponse"></p>
+            <!-- CONTACT DETAILS -->
+            <section class="info-card contact-details">
+                <div class="card-icon"><i class="fas fa-address-card"></i></div>
+                <h3>Contact Details</h3>
 
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h4>Email Address</h4>
+                        <a href="mailto:s.orjiakor5764@miva.edu.ng">s.orjiakor5764@miva.edu.ng</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h4>Phone Number</h4>
+                        <a href="tel:+2347079264311">+234 707 926 4311</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fas fa-location-dot"></i>
+                    <div>
+                        <h4>Location</h4>
+                        <p>Yola, Adamawa State, Nigeria</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fas fa-laptop-code"></i>
+                    <div>
+                        <h4>Areas of Interest</h4>
+                        <p>Programming, Web Development and Technology.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTACT FORM -->
+            <section class="info-card contact-form-card">
+                <div class="card-icon"><i class="fas fa-paper-plane"></i></div>
+                <h3>Send Me a Message</h3>
+                <p>Please complete all the fields below.</p>
+
+                <form id="contactForm" novalidate>
+
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" autocomplete="name" required>
+                        <small class="error-message" id="nameError"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="example@email.com" autocomplete="email" required>
+                        <small class="error-message" id="emailError"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter digits only" inputmode="numeric" autocomplete="tel" required>
+                        <small class="error-message" id="phoneError"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Write your message here..." required></textarea>
+                        <small class="error-message" id="messageError"></small>
+                    </div>
+
+                    <p id="formFeedback" class="form-feedback" aria-live="polite"></p>
+
+                    <button type="submit" class="btn btn-primary">
+                        Send Message
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+
+                </form>
+            </section>
+
+        </div>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Sunday Orjiakor. All Rights Reserved.</p>
+    <!-- CONTACT BANNER -->
+    <section class="contact-banner">
+        <div class="contact-content">
+            <span class="section-label">Thank You</span>
+            <h2>Thank You for <span>Visiting My Portfolio</span></h2>
+            <p>I appreciate your time and interest in my academic and professional journey.</p>
+            <a href="index.html" class="btn btn-primary">
+                Back to Home
+                <i class="fas fa-home"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <a href="index.html" class="brand">Sunday<span>.</span></a>
+            <p>Building my future, one line of code at a time.</p>
+            <div class="footer-socials">
+                <a href="https://github.com/ksunesky" target="_blank" rel="noopener noreferrer" aria-label="Visit my GitHub profile">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Sunday Orjiakor. All rights reserved.</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>

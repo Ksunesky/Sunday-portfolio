@@ -1,98 +1,239 @@
-// ACADEMIC PLANNER
+/* =========================================
+   1. ACADEMIC PLANNER FUNCTIONALITY
+========================================= */
 
-function addTask() {
+document.addEventListener("DOMContentLoaded", function() {
+    const STORAGE_KEY = "academicTasks";
 
-    const taskInput = document.getElementById("taskInput");
-    const taskText = taskInput.value.trim();
+    const taskForm = document.getElementById("taskForm");
+    const taskList = document.getElementById("taskList");
+    const emptyMessage = document.getElementById("emptyMessage");
 
-    if (taskText === "") {
-        alert("Please enter an academic task.");
-        return;
+    let tasks = loadTasks();
+
+    function loadTasks() {
+        try {
+            const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+            return Array.isArray(saved) ? saved : [];
+        } catch (error) {
+            return [];
+        }
     }
 
-    const taskList = document.getElementById("taskList");
+    function saveTasks() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+        } catch (error) {
+            console.error("Could not save tasks:", error);
+        }
+    }
 
-    const listItem = document.createElement("li");
+    function todayString() {
+        return new Date().toLocaleDateString("en-CA"); // YYYY-MM-DD
+    }
 
-    const taskName = document.createElement("span");
-    taskName.textContent = taskText;
+    function formatDate(str) {
+        const [y, m, d] = str.split("-").map(Number);
+        return new Date(y, m - 1, d).toLocaleDateString(undefined, {
+            day: "numeric",
+            month: "short",
+            year: "numeric"
+        });
+    }
 
-    const buttons = document.createElement("div");
-    buttons.className = "task-buttons";
+    function renderTasks() {
+        if (!taskList) return;
+        taskList.innerHTML = "";
+        const today = todayString();
 
-    const completeButton = document.createElement("button");
-    completeButton.textContent = "Complete";
+        // Unfinished first, then by due date (no date goes last)
+        const sorted = [...tasks].sort(function(a, b) {
+            if (a.done !== b.done) return a.done ? 1 : -1;
+            return (a.dueDate || "9999").localeCompare(b.dueDate || "9999");
+        });
 
-    completeButton.addEventListener("click", function() {
-        listItem.classList.toggle("completed");
+        sorted.forEach(function(task) {
+            const overdue = !task.done && task.dueDate && task.dueDate < today;
 
-        completeButton.textContent =
-            listItem.classList.contains("completed")
-            ? "Undo"
-            : "Complete";
-    });
+            const listItem = document.createElement("li");
+            listItem.className = "task-item";
+            if (task.done) listItem.classList.add("completed");
+            if (overdue) listItem.classList.add("overdue");
 
-    const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Delete";
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.checked = task.done;
+            checkbox.setAttribute("aria-label", "Mark task complete");
+            checkbox.addEventListener("change", function() {
+                task.done = checkbox.checked;
+                saveTasks();
+                renderTasks();
+            });
 
-    deleteButton.addEventListener("click", function() {
-        listItem.remove();
-    });
+            const taskDetails = document.createElement("div");
+            taskDetails.className = "task-details";
 
-    buttons.appendChild(completeButton);
-    buttons.appendChild(deleteButton);
+            const taskName = document.createElement("span");
+            taskName.className = "task-name";
+            taskName.textContent = task.text;
+            taskDetails.appendChild(taskName);
 
-    listItem.appendChild(taskName);
-    listItem.appendChild(buttons);
+            if (task.dueDate) {
+                const taskDateSpan = document.createElement("span");
+                taskDateSpan.className = "task-date";
+                taskDateSpan.textContent =
+                    (overdue ? "Overdue: " : "Due: ") + formatDate(task.dueDate);
+                taskDetails.appendChild(taskDateSpan);
+            }
 
-    taskList.appendChild(listItem);
+            const deleteButton = document.createElement("button");
+            deleteButton.type = "button";
+            deleteButton.className = "delete-task";
+            deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
+            deleteButton.setAttribute("aria-label", "Delete task");
+            deleteButton.addEventListener("click", function() {
+                tasks = tasks.filter(function(t) { return t.id !== task.id; });
+                saveTasks();
+                renderTasks();
+            });
 
-    taskInput.value = "";
-}
-// CONTACT FORM VALIDATION
+            listItem.appendChild(checkbox);
+            listItem.appendChild(taskDetails);
+            listItem.appendChild(deleteButton);
+            taskList.appendChild(listItem);
+        });
 
-const contactForm = document.getElementById("contactForm");
-
-if (contactForm) {
-
-    contactForm.addEventListener("submit", function(event) {
-
-        event.preventDefault();
-
-        const name = document.getElementById("name").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const phone = document.getElementById("phone").value.trim();
-        const message = document.getElementById("message").value.trim();
-
-        const response = document.getElementById("formResponse");
-
-        if (name === "" || email === "" || phone === "" || message === "") {
-            response.textContent = "Please fill in all fields.";
-            response.style.color = "red";
-            return;
+        if (emptyMessage) {
+            emptyMessage.style.display = tasks.length === 0 ? "block" : "none";
         }
 
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        updateProgress();
+    }
 
-        if (!emailPattern.test(email)) {
-            response.textContent = "Please enter a valid email address.";
-            response.style.color = "red";
-            return;
-        }
+    function updateProgress() {
+        const totalEl = document.getElementById("totalTasks");
+        if (!totalEl) return;
 
-        const phonePattern = /^[0-9]+$/;
+        const total = tasks.length;
+        const completed = tasks.filter(function(t) { return t.done; }).length;
+        const remaining = total - completed;
+        const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
 
-        if (!phonePattern.test(phone)) {
-            response.textContent = "Phone number must contain digits only.";
-            response.style.color = "red";
-            return;
-        }
+        totalEl.textContent = total;
+        document.getElementById("completedTasks").textContent = completed;
+        document.getElementById("remainingTasks").textContent = remaining;
+        document.getElementById("progressBar").style.width = `${percentage}%`;
+        document.getElementById("progressText").textContent = `${percentage}% completed`;
+    }
 
-        response.textContent = "Your form has been validated successfully!";
-        response.style.color = "green";
+    if (taskForm) {
+        const taskInput = document.getElementById("taskInput");
+        const taskDate = document.getElementById("taskDate");
 
-        contactForm.reset();
+        // Inline error message instead of alert()
+        const errorEl = document.createElement("span");
+        errorEl.className = "error-message";
+        taskInput.parentElement.appendChild(errorEl);
 
-    });
+        taskInput.addEventListener("input", function() {
+            errorEl.textContent = "";
+        });
 
-}
+        taskForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const taskText = taskInput.value.trim();
+
+            if (taskText === "") {
+                errorEl.textContent = "Please enter an academic task.";
+                taskInput.focus();
+                return;
+            }
+            errorEl.textContent = "";
+
+            tasks.push({
+                id: Date.now(),
+                text: taskText,
+                dueDate: taskDate.value || "",
+                done: false
+            });
+
+            saveTasks();
+            renderTasks();
+
+            taskInput.value = "";
+            taskDate.value = "";
+            taskInput.focus();
+        });
+
+        renderTasks();
+    }
+
+
+    /* =========================================
+       2. CONTACT FORM VALIDATION
+    ========================================= */
+
+    const contactForm = document.getElementById("contactForm");
+
+    if (contactForm) {
+        contactForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            document.getElementById("nameError").textContent = "";
+            document.getElementById("emailError").textContent = "";
+            document.getElementById("phoneError").textContent = "";
+            document.getElementById("messageError").textContent = "";
+            
+            const formFeedback = document.getElementById("formFeedback");
+            formFeedback.textContent = "";
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const message = document.getElementById("message").value.trim();
+
+            let isValid = true;
+
+            if (name === "") {
+                document.getElementById("nameError").textContent = "Please enter your full name.";
+                isValid = false;
+            }
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email === "") {
+                document.getElementById("emailError").textContent = "Please enter your email address.";
+                isValid = false;
+            } else if (!emailPattern.test(email)) {
+                document.getElementById("emailError").textContent = "Please enter a valid email address.";
+                isValid = false;
+            }
+
+            const phonePattern = /^[0-9]+$/;
+            if (phone === "") {
+                document.getElementById("phoneError").textContent = "Please enter your phone number.";
+                isValid = false;
+            } else if (!phonePattern.test(phone)) {
+                document.getElementById("phoneError").textContent = "Phone number must contain digits only.";
+                isValid = false;
+            }
+
+            if (message === "") {
+                document.getElementById("messageError").textContent = "Please write your message.";
+                isValid = false;
+            }
+
+            // STOPS execution here if validation fails
+            if (!isValid) {
+                formFeedback.textContent = "Please fix the errors above before submitting.";
+                formFeedback.style.color = "#ff4d4d";
+                return;
+            }
+
+            formFeedback.textContent = "Your message has been sent successfully!";
+            formFeedback.style.color = "#2ecc71";
+
+            contactForm.reset();
+        });
+    }
+});
